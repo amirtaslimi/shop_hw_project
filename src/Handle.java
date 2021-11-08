@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Handle {
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Seller> sellers =new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int selctor=0;
         while (selctor!=1){
             System.out.println("choose");
@@ -43,7 +44,7 @@ public class Handle {
     }
 
     //control
-    private static void userHandel(User user) {
+    private static void userHandel(User user) throws IOException {
         if (user != null) {
             int selector = 0;
             while (selector != 1) {
@@ -76,7 +77,7 @@ public class Handle {
             }
         }
     }
-    private static void sellerHandel (Seller seller){
+    private static void sellerHandel (Seller seller)throws IOException{
         if (seller != null) {
             int selector = 0;
             while (selector != 1) {
@@ -119,13 +120,13 @@ public class Handle {
     }
 
     //information
-    public static User userRegister() {
+    public static User userRegister()throws IOException {
         System.out.println("pls enter username password");
         User user = new User(scan.nextLine(), scan.nextLine());
         users.add(user);
         return user;
     }
-    private static User userLogin() {
+    private static User userLogin()throws IOException {
         String username;
         String password;
         System.out.println("pls enter your username");
@@ -142,13 +143,13 @@ public class Handle {
         System.out.println("not found!!");
         return null;
     }
-    private static Seller sellerRegister(){
+    private static Seller sellerRegister()throws IOException{
         System.out.println("pls enter username password");
         Seller seller = new Seller(scan.nextLine(), scan.nextLine());
         sellers.add(seller);
         return seller;
     }
-    private static Seller sellerLogin() {
+    private static Seller sellerLogin() throws IOException{
         String username;
         String password;
         System.out.println("pls enter your username");
@@ -164,7 +165,7 @@ public class Handle {
     }
 
     //create and remove
-    private static void createShopinList(User user){
+    private static void createShopinList(User user)throws IOException{
         ShopinList shopinList = new ShopinList();
         int num =1;
         int numProduct=0;
@@ -184,11 +185,11 @@ public class Handle {
         user.shopinLists.add(shopinList);
         user.shopinListsId.add(shopinList.id);
     }
-    private static void createProduct (String name,int cost){
+    private static void createProduct (String name,int cost)throws IOException{
         Product product = new Product(name, cost);
         products.add(product);
     }
-    private static void addProduct(User user){
+    private static void addProduct(User user)throws IOException{
         System.out.println("add product 0,"+products.size());
         int num = Integer.parseInt(scan.nextLine());
 
@@ -237,7 +238,7 @@ public class Handle {
         }
     }
     //show things
-    private static void showShopList(User user){
+    private static void showShopList(User user)throws IOException{
         user.shopinLists.forEach(System.out::println);
     }
     private static void showProducts(){
