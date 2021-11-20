@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="618.0" prefWidth="969.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+   <children>
+      <Button layoutX="114.0" layoutY="101.0" mnemonicParsing="false" onAction="#createShoplists" text="create shop list" />
+      <Button layoutX="386.0" layoutY="101.0" mnemonicParsing="false" onAction="#addProductShoplist" text="add product" />
+      <TextField fx:id="addProductshoplist" layoutX="499.0" layoutY="101.0" />
+      <Label layoutX="100.0" layoutY="25.0" prefHeight="46.0" prefWidth="406.0" text="firth create shop list , then add product, or remove with name" />
+      <TextField fx:id="userRemoveProduct" layoutX="499.0" layoutY="176.0" />
+      <Button layoutX="386.0" layoutY="176.0" mnemonicParsing="false" onAction="#userRemoveProduct" text="remove product" />
+      <TableView fx:id="tableViewUser" layoutY="302.0" prefHeight="314.0" prefWidth="969.0">
+        <columns>
+          <TableColumn fx:id="shoplists" prefWidth="583.9999939203262" text="shoplists" />
+            <TableColumn fx:id="userShowProduct" prefWidth="384.8000122070313" text="products" />
+        </columns>
+      </TableView>
+      <Button layoutX="262.0" layoutY="238.0" mnemonicParsing="false" onAction="#showShoplists" text="show shoplists" />
+      <Button layoutX="744.0" layoutY="238.0" mnemonicParsing="false" onAction="#userShowProduct" text="show products" />
+      <Label layoutX="512.0" layoutY="63.0" text="product number" />
+   </children>
+</AnchorPane>
