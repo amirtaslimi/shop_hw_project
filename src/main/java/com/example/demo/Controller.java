@@ -24,6 +24,13 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Controller implements Initializable {
+
+    public static ArrayList<Product> products = new ArrayList<>();
+    public static ArrayList<ShopinList> shopinLists = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Seller> sellers = new ArrayList<>();
+
+
     public Label productLabel;
     int kindFlag = 0;
     static int userIduse=-1;
@@ -171,9 +178,12 @@ public class Controller implements Initializable {
     @FXML
     void showShoplists(ActionEvent event) {
         ArrayList<String> list = new ArrayList<>();
-        for (ShopinList shp:shopinLists) {
-            System.out.println(shp.listProducts.toString());
-            list.add(shp.listProducts.toString());
+        for (User usr:users) {
+            if (usr.id==userIduse){
+                for (ShopinList shp: usr.shopinLists) {
+                    list.add(shp.listProducts.toString());
+                }
+            }
         }
         ObservableList<String> details = FXCollections.observableArrayList(list);
         shoplists.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
@@ -272,15 +282,6 @@ public class Controller implements Initializable {
 
 
 
-
-
-
-    public static ArrayList<Product> products = new ArrayList<>();
-    public static ArrayList<ShopinList> shopinLists = new ArrayList<>();
-    public static ArrayList<User> users = new ArrayList<>();
-    public static ArrayList<Seller> sellers = new ArrayList<>();
-
-
     //pages
     void sellerPage() throws IOException {
         AnchorPane root = FXMLLoader.load(this.getClass().getResource("mainPageSeller.fxml"));
@@ -306,40 +307,6 @@ public class Controller implements Initializable {
         Product product = new Product(name, cost);
         products.add(product);
     }
-
-//    public static void setStatus() {
-//        int id = 0;
-//        System.out.println("enter shopinList id , to set shipping status");
-//        for (ShopinList shopinList : shopinLists) {
-//            if (id == shopinList.id) {
-//                System.out.println("Processing:1,OnHold:2,Completed:3,Canceled:4,Failed:5");
-//               // int statusNumber = Integer.parseInt(scan.nextLine());
-//               // switch (statusNumber) {
-//                    case 1:
-//                        shopinList.status = Status.Processing;
-//                        break;
-//                    case 2:
-//                        shopinList.status = Status.OnHold;
-//                        break;
-//                    case 3:
-//                        shopinList.status = Status.Completed;
-//                        break;
-//                    case 4:
-//                        shopinList.status = Status.Canceled;
-//                        break;
-//                    case 5:
-//                        shopinList.status = Status.Failed;
-//                        break;
-//                    default:
-//                        System.out.println("invalid number!!");
-//                }
-//            } else System.out.println("nothing found!!");
-//        }
-//    }
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        if (flagStatus==0) {

@@ -5,14 +5,43 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="697.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="697.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="489.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.7613636643597574">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4444444477558136" green="1.0" blue="0.6203703880310059" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.4147465437788018">
+                     <color>
+                        <Color red="0.4444444477558136" green="1.0" blue="0.6203703880310059" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
       <Button layoutX="7.0" layoutY="96.0" mnemonicParsing="false" onAction="#createShoplists" text="create shop list" />
       <Button layoutX="7.0" layoutY="181.0" mnemonicParsing="false" onAction="#addProductShoplist" text="add product" />
       <TextField fx:id="addProductshoplist" layoutX="120.0" layoutY="181.0" />
-      <Label layoutX="14.0" layoutY="25.0" prefHeight="46.0" prefWidth="406.0" text="firth create shop list , then add product, or remove with name" />
+      <Label layoutX="17.0" layoutY="47.0" prefHeight="46.0" prefWidth="406.0" text="firth create shop list , then add product, or remove with name" />
       <TextField fx:id="userRemoveProduct" layoutX="120.0" layoutY="256.0" />
       <Button layoutX="7.0" layoutY="256.0" mnemonicParsing="false" onAction="#userRemoveProduct" text="remove product" />
       <TableView fx:id="tableViewUser" layoutX="489.0" prefHeight="314.0" prefWidth="497.0">
@@ -20,13 +49,25 @@
           <TableColumn fx:id="shoplists" prefWidth="496.8000122070313" text="Shoplists" />
         </columns>
       </TableView>
-      <Button layoutX="362.0" layoutY="35.0" mnemonicParsing="false" onAction="#showShoplists" text="show shoplists" />
-      <Button layoutX="361.0" layoutY="344.0" mnemonicParsing="false" onAction="#userShowProduct" text="show products" />
+      <Button layoutX="394.0" layoutY="1.0" mnemonicParsing="false" onAction="#showShoplists" text="show shoplists" />
+      <Button layoutX="394.0" layoutY="314.0" mnemonicParsing="false" onAction="#userShowProduct" text="show products" />
       <Label layoutX="133.0" layoutY="143.0" text="product number" />
-      <TableView fx:id="tableViewUser1" layoutX="489.0" layoutY="313.0" prefHeight="314.0" prefWidth="497.0">
+      <TableView fx:id="tableViewUser1" layoutX="489.0" layoutY="313.0" prefHeight="386.0" prefWidth="498.0">
          <columns>
             <TableColumn fx:id="userShowProduct" prefWidth="496.8000122070313" text="Products" />
          </columns>
       </TableView>
+      <Label layoutX="9.0" layoutY="1.0" prefHeight="40.0" prefWidth="158.0" text="user page">
+         <font>
+            <Font name="Nirmala UI" size="31.0" />
+         </font>
+         <effect>
+            <InnerShadow blurType="TWO_PASS_BOX" choke="0.72" height="182.42" radius="86.6175" width="166.05">
+               <color>
+                  <Color red="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Label>
    </children>
 </AnchorPane>

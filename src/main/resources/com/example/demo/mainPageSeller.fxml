@@ -5,42 +5,119 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="729.0" prefWidth="1076.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
-      <Label layoutX="45.0" layoutY="15.0" prefHeight="31.0" prefWidth="51.0" text="seller" />
-      <Button layoutX="435.0" layoutY="112.0" mnemonicParsing="false" onAction="#createProductPage" text="add product" />
-      <TextField fx:id="createProductName" layoutX="546.0" layoutY="112.0" />
-      <TextField fx:id="createProductCost" layoutX="547.0" layoutY="154.0" />
-      <TextField fx:id="userRemove" layoutX="917.0" layoutY="163.0" />
-      <Button layoutX="804.0" layoutY="103.0" mnemonicParsing="false" onAction="#removeProduct" text="remove product" />
-      <Button layoutX="805.0" layoutY="163.0" mnemonicParsing="false" onAction="#removeUser" text="remove user" />
-      <TextField fx:id="ProductNameRemove" layoutX="917.0" layoutY="103.0" />
-      <Button layoutX="96.0" layoutY="258.0" mnemonicParsing="false" onAction="#showProduct" text="show products" />
-      <Button layoutX="398.0" layoutY="258.0" mnemonicParsing="false" onAction="#showUsers" text="show users" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="330.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="1082.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4399999976158142" green="0.8741609454154968" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.29646697388632876">
+                     <color>
+                        <Color red="0.4399999976158142" green="0.8741609454154968" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="31.0" layoutY="15.0" prefHeight="40.0" prefWidth="158.0" text="seller page">
+         <font>
+            <Font name="Nirmala UI" size="31.0" />
+         </font>
+         <effect>
+            <InnerShadow blurType="TWO_PASS_BOX" choke="0.72" height="182.42" radius="86.6175" width="166.05">
+               <color>
+                  <Color red="1.0" />
+               </color>
+            </InnerShadow>
+         </effect></Label>
+      <Button layoutX="350.0" layoutY="277.0" mnemonicParsing="false" onAction="#showProduct" text="show products" />
+      <Button layoutX="652.0" layoutY="277.0" mnemonicParsing="false" onAction="#showUsers" text="show users" />
       <TableView fx:id="tableview" layoutX="-6.0" layoutY="331.0" prefHeight="398.0" prefWidth="1088.0">
         <columns>
           <TableColumn fx:id="tablecolumn" prefWidth="1087.1999940872192" text="show things" />
         </columns>
       </TableView>
-      <Button layoutX="244.0" layoutY="258.0" mnemonicParsing="false" onAction="#showAllShoplists" text="show shoplists" />
-       <ChoiceBox fx:id="setStatus" layoutX="256.0" layoutY="112.0" value="default">
-           <items>
-               <FXCollections fx:factory="observableArrayList">
-                   <String fx:value="Processing" />
-                   <String fx:value="OnHold" />
-                   <String fx:value="Completed" />
-                   <String fx:value="Canceled" />
-                   <String fx:value="Failed" />
-               </FXCollections>
-           </items>
-       </ChoiceBox>
-      <Label layoutX="31.0" layoutY="85.0" text="set shiping status for shoplists with id" />
-      <TextField fx:id="shoplistID" layoutX="31.0" layoutY="112.0" prefHeight="26.0" prefWidth="74.0" />
-      <Button layoutX="256.0" layoutY="90.0" mnemonicParsing="false" onAction="#setStatus" prefHeight="26.0" prefWidth="92.0" text="select" />
+      <Button layoutX="498.0" layoutY="277.0" mnemonicParsing="false" onAction="#showAllShoplists" text="show shoplists" />
+      <TabPane layoutX="252.0" layoutY="7.0" prefHeight="200.0" prefWidth="456.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="add product">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="createProductName" layoutX="25.0" layoutY="14.0" promptText="product name" />
+                        <TextField fx:id="createProductCost" layoutX="25.0" layoutY="40.0" promptText="product cost(integer)" />
+                        <Button layoutX="25.0" layoutY="86.0" mnemonicParsing="false" onAction="#createProductPage" text="add product" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="remove product">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="ProductNameRemove" layoutX="78.0" layoutY="14.0" promptText="product name" />
+                        <Button layoutX="78.0" layoutY="60.0" mnemonicParsing="false" onAction="#removeProduct" text="remove product" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="remove user">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="userRemove" layoutX="182.0" layoutY="14.0" promptText="user name" />
+                        <Button layoutX="187.0" layoutY="60.0" mnemonicParsing="false" onAction="#removeUser" text="remove user" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="shipping status">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                         <ChoiceBox fx:id="setStatus" layoutX="307.0" layoutY="72.0" value="default">
+                             <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                     <String fx:value="Processing" />
+                                     <String fx:value="OnHold" />
+                                     <String fx:value="Completed" />
+                                     <String fx:value="Canceled" />
+                                     <String fx:value="Failed" />
+                                 </FXCollections>
+                             </items>
+                         </ChoiceBox>
+                        <Label layoutX="195.0" layoutY="21.0" text="set shiping status for shoplists with id" />
+                        <TextField fx:id="shoplistID" layoutX="195.0" layoutY="48.0" prefHeight="26.0" prefWidth="74.0" promptText="id number" />
+                        <Button layoutX="307.0" layoutY="49.0" mnemonicParsing="false" onAction="#setStatus" prefHeight="26.0" prefWidth="94.0" text="select" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
