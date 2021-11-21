@@ -122,9 +122,6 @@ public class Handle {
                     case 6:
                         removeUser();
                         break;
-                    case 7:
-                        setStatus();
-                        break;
                     default:
                         System.out.println("wrong number!!");
                 }
@@ -218,37 +215,6 @@ public class Handle {
             }
         }
         System.out.println("found nothing!!");
-    }
-    public static void setStatus(){
-        int id=0;
-        System.out.println("enter shopinList id , to set shipping status");
-        id = Integer.parseInt(scan.nextLine());
-        for (ShopinList shopinList:shopinLists) {
-            if (id == shopinList.id){
-                System.out.println("Processing:1,OnHold:2,Completed:3,Canceled:4,Failed:5");
-                int statusNumber = Integer.parseInt(scan.nextLine());
-                switch (statusNumber){
-                    case 1:
-                        shopinList.status = Status.Processing;
-                        break;
-                    case 2:
-                        shopinList.status = Status.OnHold;
-                        break;
-                    case 3:
-                        shopinList.status = Status.Completed;
-                        break;
-                    case 4:
-                        shopinList.status = Status.Canceled;
-                        break;
-                    case 5:
-                        shopinList.status = Status.Failed;
-                        break;
-                    default:
-                        System.out.println("invalid number!!");
-                }
-            }
-            else System.out.println("nothing found!!");
-        }
     }
     //show things
     public static void showShopList(User user)throws IOException{

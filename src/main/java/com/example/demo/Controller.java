@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,10 +23,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class HelloController implements Initializable {
+public class Controller implements Initializable {
     public Label productLabel;
     int kindFlag = 0;
-    int flagStatus = 0;
     static int userIduse=-1;
     static int userIdShoplist=-1;
 
@@ -48,7 +48,7 @@ public class HelloController implements Initializable {
                 liveStatus.setText("wrong");//problem
             }
 
-        } else {
+        } else if (kindFlag==2){
             if (sellerLogin(username.getText(), password.getText()) != null) {
                 sellerPage();
             } else {
@@ -56,14 +56,23 @@ public class HelloController implements Initializable {
                 liveStatus.setText("wrong");//problem
             }
         }
+        else {
+            liveStatus.setTextFill(Color.RED);
+            liveStatus.setText("firth select your kind");
+        }
     }
     @FXML
     void register(ActionEvent event) throws IOException {
 
         if (kindFlag == 1) {
             userRegister(username.getText(), password.getText());
-        } else {
+        }
+        else if (kindFlag == 2){
             sellerRegister(username.getText(), password.getText());
+        }
+        else {
+            liveStatus.setTextFill(Color.RED);
+            liveStatus.setText("firth select your kind");
         }
 
     }
@@ -114,12 +123,14 @@ public class HelloController implements Initializable {
 
     //user page things---------------------------------------------------------------------------
     //users param
-
-
     @FXML
-    private TableColumn<String, String> shoplists;
+    private MenuButton shipingStatus;
     @FXML
     private TableView<String> tableViewUser;
+    @FXML
+    private TableView<String> tableViewUser1;
+    @FXML
+    private TableColumn<String, String> shoplists;
     @FXML
     private TableColumn<String, String> userShowProduct;
     @FXML
@@ -177,7 +188,7 @@ public class HelloController implements Initializable {
         }
         ObservableList<String> details = FXCollections.observableArrayList(list);
         userShowProduct.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
-        tableViewUser.setItems(details);
+        tableViewUser1.setItems(details);
     }
 
     //sellers param
@@ -195,6 +206,10 @@ public class HelloController implements Initializable {
     private TextField createProductCost;
     @FXML
     private TextField createProductName;
+    @FXML
+    private TextField shoplistID;
+    @FXML
+    private ChoiceBox<?> setStatus;
     //seller func
     @FXML
     void createProductPage(ActionEvent event) throws IOException {
@@ -219,7 +234,17 @@ public class HelloController implements Initializable {
             lis.add(users.get(i).toString());
         }
         ObservableList<String> detail = FXCollections.observableArrayList(lis);
-        tablecolumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+        tablecolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+        tableview.setItems(detail);
+    }
+    @FXML
+    void showAllShoplists(ActionEvent event){
+        ArrayList<String> lis = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++) {
+            lis.add(shopinLists.get(i).toString());
+        }
+        ObservableList<String> detail = FXCollections.observableArrayList(lis);
+        tablecolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
         tableview.setItems(detail);
     }
     @FXML
@@ -234,19 +259,31 @@ public class HelloController implements Initializable {
             }
         }
     }
+    @FXML
+    void setStatus(ActionEvent event){
+        for (ShopinList shp:shopinLists) {
+            if(shp.id==Integer.parseInt(shoplistID.getText())){
+                shp.status = (String) setStatus.getValue();
+            }
+        }
+        System.out.println(setStatus.getValue());
+    }
 
 
-    static Scanner scan = new Scanner(System.in);
+
+
+
+
+
     public static ArrayList<Product> products = new ArrayList<>();
     public static ArrayList<ShopinList> shopinLists = new ArrayList<>();
     public static ArrayList<User> users = new ArrayList<>();
-
     public static ArrayList<Seller> sellers = new ArrayList<>();
 
 
     //pages
     void sellerPage() throws IOException {
-        AnchorPane root = FXMLLoader.load(this.getClass().getResource("mainPage.fxml"));
+        AnchorPane root = FXMLLoader.load(this.getClass().getResource("mainPageSeller.fxml"));
         Stage stage = new Stage();
         stage.setTitle("seller");
         stage.setScene(new Scene(root));
@@ -270,43 +307,35 @@ public class HelloController implements Initializable {
         products.add(product);
     }
 
-    public static void addProduct(User user) throws IOException {
-        System.out.println("add product 0," + products.size());
-        int num = Integer.parseInt(scan.nextLine());
-
-    }
-
-
-    public static void setStatus() {
-        int id = 0;
-        System.out.println("enter shopinList id , to set shipping status");
-        id = Integer.parseInt(scan.nextLine());
-        for (ShopinList shopinList : shopinLists) {
-            if (id == shopinList.id) {
-                System.out.println("Processing:1,OnHold:2,Completed:3,Canceled:4,Failed:5");
-                int statusNumber = Integer.parseInt(scan.nextLine());
-                switch (statusNumber) {
-                    case 1:
-                        shopinList.status = Status.Processing;
-                        break;
-                    case 2:
-                        shopinList.status = Status.OnHold;
-                        break;
-                    case 3:
-                        shopinList.status = Status.Completed;
-                        break;
-                    case 4:
-                        shopinList.status = Status.Canceled;
-                        break;
-                    case 5:
-                        shopinList.status = Status.Failed;
-                        break;
-                    default:
-                        System.out.println("invalid number!!");
-                }
-            } else System.out.println("nothing found!!");
-        }
-    }
+//    public static void setStatus() {
+//        int id = 0;
+//        System.out.println("enter shopinList id , to set shipping status");
+//        for (ShopinList shopinList : shopinLists) {
+//            if (id == shopinList.id) {
+//                System.out.println("Processing:1,OnHold:2,Completed:3,Canceled:4,Failed:5");
+//               // int statusNumber = Integer.parseInt(scan.nextLine());
+//               // switch (statusNumber) {
+//                    case 1:
+//                        shopinList.status = Status.Processing;
+//                        break;
+//                    case 2:
+//                        shopinList.status = Status.OnHold;
+//                        break;
+//                    case 3:
+//                        shopinList.status = Status.Completed;
+//                        break;
+//                    case 4:
+//                        shopinList.status = Status.Canceled;
+//                        break;
+//                    case 5:
+//                        shopinList.status = Status.Failed;
+//                        break;
+//                    default:
+//                        System.out.println("invalid number!!");
+//                }
+//            } else System.out.println("nothing found!!");
+//        }
+//    }
 
 
 
