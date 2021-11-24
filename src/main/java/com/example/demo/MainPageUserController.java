@@ -51,16 +51,23 @@ public class MainPageUserController {
     void addProductShoplist(ActionEvent event) {
         for (ShopinList shp:Data.shopinLists) {
             if (shp.id==Data.userIdShoplist){
-                shp.listProducts.add(Data.products.get(Integer.parseInt(addProductshoplist.getText())));
-                System.out.println("lkj");
+                for (Product prod:Data.products) {
+                    if (Objects.equals(prod.productName, addProductshoplist.getText())){
+                        shp.listProducts.add(prod);
+                    }
+                }
             }
         }
     }
     @FXML
     void userRemoveProduct(ActionEvent event){
         for (ShopinList shp:Data.shopinLists) {
-            if (shp.id== Data.userIdShoplist){
-                shp.listProducts.remove(Data.products.get(Integer.parseInt(addProductshoplist.getText())));
+            if (shp.id==Data.userIdShoplist){
+                for (Product prod:Data.products) {
+                    if (Objects.equals(prod.productName, addProductshoplist.getText())){
+                        shp.listProducts.remove(prod);
+                    }
+                }
             }
         }
     }
