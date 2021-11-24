@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="413.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<AnchorPane prefHeight="413.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoginController">
    <Rectangle arcHeight="5.0" arcWidth="5.0" height="412.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="328.0">
       <fill>
          <LinearGradient endX="1.0" endY="1.0">

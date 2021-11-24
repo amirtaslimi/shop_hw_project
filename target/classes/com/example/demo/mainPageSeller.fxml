@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="729.0" prefWidth="1076.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<AnchorPane prefHeight="729.0" prefWidth="1076.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainPageSellerController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="330.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="1082.0">
          <fill>
@@ -56,7 +56,7 @@
          </effect></Label>
       <Button layoutX="350.0" layoutY="277.0" mnemonicParsing="false" onAction="#showProduct" text="show products" />
       <Button layoutX="652.0" layoutY="277.0" mnemonicParsing="false" onAction="#showUsers" text="show users" />
-      <TableView fx:id="tableview" layoutX="-6.0" layoutY="331.0" prefHeight="398.0" prefWidth="1088.0">
+      <TableView fx:id="tableview" layoutY="331.0" prefHeight="398.0" prefWidth="1082.0">
         <columns>
           <TableColumn fx:id="tablecolumn" prefWidth="1087.1999940872192" text="show things" />
         </columns>

@@ -12,8 +12,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="697.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<AnchorPane prefHeight="699.0" prefWidth="1305.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainPageUserController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="697.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="489.0">
          <fill>
@@ -44,17 +45,17 @@
       <Label layoutX="17.0" layoutY="47.0" prefHeight="46.0" prefWidth="406.0" text="firth create shop list , then add product, or remove with name" />
       <TextField fx:id="userRemoveProduct" layoutX="120.0" layoutY="256.0" />
       <Button layoutX="7.0" layoutY="256.0" mnemonicParsing="false" onAction="#userRemoveProduct" text="remove product" />
-      <TableView fx:id="tableViewUser" layoutX="489.0" prefHeight="314.0" prefWidth="497.0">
+      <TableView fx:id="tableViewUser" layoutX="489.0" prefHeight="314.0" prefWidth="814.0">
         <columns>
-          <TableColumn fx:id="shoplists" prefWidth="496.8000122070313" text="Shoplists" />
+          <TableColumn fx:id="shoplists" prefWidth="808.7999877929688" text="Shoplists" />
         </columns>
       </TableView>
       <Button layoutX="394.0" layoutY="1.0" mnemonicParsing="false" onAction="#showShoplists" text="show shoplists" />
       <Button layoutX="394.0" layoutY="314.0" mnemonicParsing="false" onAction="#userShowProduct" text="show products" />
       <Label layoutX="133.0" layoutY="143.0" text="product number" />
-      <TableView fx:id="tableViewUser1" layoutX="489.0" layoutY="313.0" prefHeight="386.0" prefWidth="498.0">
+      <TableView fx:id="tableViewUser1" layoutX="489.0" layoutY="313.0" prefHeight="386.0" prefWidth="814.0">
          <columns>
-            <TableColumn fx:id="userShowProduct" prefWidth="496.8000122070313" text="Products" />
+            <TableColumn fx:id="userShowProduct" prefWidth="811.2000732421875" text="Products" />
          </columns>
       </TableView>
       <Label layoutX="9.0" layoutY="1.0" prefHeight="40.0" prefWidth="158.0" text="user page">
@@ -69,5 +70,12 @@
             </InnerShadow>
          </effect>
       </Label>
+      <Button layoutX="32.0" layoutY="377.0" mnemonicParsing="false" onAction="#shoplistWithID" text="show shoplist with ID" />
+      <Text fx:id="shoplistWithIDShow" layoutX="32.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nothing" wrappingWidth="387.7367401123047">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <TextField fx:id="shoplistID" layoutX="161.0" layoutY="377.0" prefHeight="26.0" prefWidth="45.0" promptText="ID (integer)" />
    </children>
 </AnchorPane>
